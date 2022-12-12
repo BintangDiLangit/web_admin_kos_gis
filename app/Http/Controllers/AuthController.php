@@ -28,8 +28,16 @@ class AuthController extends Controller
             $data = $login->json();
             $data = $data['data'];
             Cookie::queue(Cookie::make('token', $data['token']));
-            return view('home');
+            Cookie::queue(Cookie::make('nama', $data['user']['nama']));
+            $kos = Http::withToken($data['token'])->post(env('APP_URL_API') . '/api/v1/kost/list');
+            $statusCode = $kos->status();
+            if ($statusCode == 200) {
+                $countKos = $kos->json();
+                $countKos = count($countKos['data']);
+                return view('home', compact('countKos'));
+            }
         }
+        return view('auth.login');
     }
 
     public function logout(Request $request)
