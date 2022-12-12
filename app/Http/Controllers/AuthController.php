@@ -46,6 +46,6 @@ class AuthController extends Controller
         Http::withToken($token)
             ->post(env('APP_URL_API') . '/api/v1/logout');
 
-        return view('auth.login');
+        return redirect(route('login'));
     }
 }
