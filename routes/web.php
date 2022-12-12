@@ -22,20 +22,22 @@ Route::get('/', function () {
 });
 
 
-Route::get('home', [HomeController::class, 'index']);
-Route::get('login', [AuthController::class, 'loginView']);
+Route::get('login', [AuthController::class, 'loginView'])->name('login');
 Route::post('login', [AuthController::class, 'login'])->name('loginol');
-Route::post('logout', [AuthController::class, 'logout'])->name('logoutol');
 
-Route::prefix('kos')->group(function () {
-    Route::get('/', [KosController::class, 'index']);
-    Route::post('/', [KosController::class, 'add']);
-    // Route::post('/{id}', [KosController::class, 'update']);
-    Route::delete('/{id}', [KosController::class, 'delete'])->name('kos.delete');
-});
-Route::prefix('user')->group(function () {
-    Route::get('/', [UserController::class, 'index']);
-    // Route::post('/', [UserController::class, 'add']);
-    // Route::post('/{id}', [UserController::class, 'update']);
-    // Route::delete('/{id}', [UserController::class, 'delete']);
+Route::middleware('verify_token')->group(function () {
+    Route::get('home', [HomeController::class, 'index'])->name('home');
+    Route::post('logout', [AuthController::class, 'logout'])->name('logoutol');
+    Route::prefix('kos')->group(function () {
+        Route::get('/', [KosController::class, 'index']);
+        Route::post('/', [KosController::class, 'add']);
+        Route::post('/{id}', [KosController::class, 'update']);
+        Route::delete('/{id}', [KosController::class, 'delete'])->name('kos.delete');
+    });
+    Route::prefix('user')->group(function () {
+        Route::get('/', [UserController::class, 'index']);
+        // Route::post('/', [UserController::class, 'add']);
+        // Route::post('/{id}', [UserController::class, 'update']);
+        // Route::delete('/{id}', [UserController::class, 'delete']);
+    });
 });

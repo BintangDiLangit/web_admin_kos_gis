@@ -34,7 +34,7 @@ class AuthController extends Controller
             if ($statusCode == 200) {
                 $countKos = $kos->json();
                 $countKos = count($countKos['data']);
-                return view('home', compact('countKos'));
+                return redirect(route('home'));
             }
         }
         return view('auth.login');
