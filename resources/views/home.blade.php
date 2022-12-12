@@ -11,11 +11,7 @@
             <div class="page-title-box">
                 <div class="row">
                     <div class="col">
-                        <h4 class="page-title">Analytics</h4>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0);">Web Admin Kos</a></li>
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>
+                        <h4 class="page-title">Data Analytics</h4>
                     </div>
                     <!--end col-->
                     <div class="col-auto align-self-center">
@@ -49,8 +45,7 @@
                                     <p class="text-dark mb-0 fw-semibold">Jumlah Kos</p>
                                     <h3 class="m-0">{{ $countKos }}</h3>
                                     <p class="mb-0 text-truncate text-muted"><span class="text-success"><i
-                                                class="mdi mdi-trending-up"></i>8.5%</span> New Sessions
-                                        Today</p>
+                                                class="mdi mdi-trending-up"></i>8.5%</span></p>
                                 </div>
                                 <div class="col-auto align-self-center">
                                     <div class="report-main-icon bg-light-alt">
